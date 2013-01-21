@@ -1,0 +1,8 @@
+Package: hsn2-pcap-extract
+Version: {VER}
+Section: unknown
+Priority: optional
+Architecture: all
+Depends: python-hsn2-lib, tcpxtract, python-pefile, zip, python-magic
+Maintainer: Paweł Borkowski (pawel.borkowski@nask.pl)
+Description: HSN2 PCAP extractor - It extracts files from PCAP

@@ -1,0 +1,3 @@
+#!/bin/sh
+ln -s /opt/hsn2/tcpxtract/tcpxtract /usr/bin/tcpxtract
+mv /etc/hsn2/tcpxtract.conf /etc/tcpxtract.conf
