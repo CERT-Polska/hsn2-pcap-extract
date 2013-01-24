@@ -1,0 +1,12 @@
+HSN2 PCAP Extractor (hsn2-pcap-extract)
+
+
+The HSN2 PCAP Extractor service extracts files from PCAP content.
+
+
+
+This repository is a part of bigger project: Honeyspider Network 2.0.
+Project bundle is located at: https://github.com/CERT-Polska/hsn2-bundle.
+More information is available on the project's website:
+http://www.honeyspider.net
+
