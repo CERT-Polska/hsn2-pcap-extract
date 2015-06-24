@@ -30,6 +30,9 @@ from hsn2taskprocessor import ParamException
 from hsn2_pcap_extract.verifiers.VerifierFactory import VerifierFactory
 from config import Config
 from hsn2osadapter import ObjectStoreException
+
+from hsn2objectwrapper import Object
+
 from external import External
 import logging
 import os
@@ -48,6 +51,7 @@ class PcapExtractTaskProcessor(HSN2TaskProcessor):
 
 	def createNewObject(self, filepath, fileExtension):
 		logging.info("Creating new object for file %s" % filepath)
+
 		obj = Object()
 		obj.addBytes("content", long(self.dsAdapter.putFile(filepath, self.currentTask.job)))
 		obj.addString("file_type", fileExtension)
