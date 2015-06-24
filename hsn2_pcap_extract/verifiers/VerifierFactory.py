@@ -15,20 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''	
-Created on Jul 12, 2012
-
-@author: pawelb
-'''
-import sys
-sys.path.append("/opt/hsn2/pcap-extract/verifiers")
-import os
-from collections import defaultdict
-import re
 import ConfigParser
-from VerifierZip import VerifierZip
-from VerifierPefile import VerifierPefile
-from VerifierMimetester import VerifierMimetester
+from hsn2_pcap_extract.verifiers.VerifierZip import VerifierZip
+from hsn2_pcap_extract.verifiers.VerifierPefile import VerifierPefile
+from hsn2_pcap_extract.verifiers.VerifierMimetester import VerifierMimetester
 
 class VerifierFactory():
 

@@ -15,26 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
-Created on Jul 12, 2012
-
-@author: pawelb
-'''
-
-import sys
-sys.path.append("/opt/hsn2/pcap-extract/verifiers")
-from VerifierAbstract import VerifierAbstract
-import logging
-
-class VerifierMimetester(VerifierAbstract):
+class VerifierAbstract():
 
 	def __init__(self):
-		pass
-		
+		raise NotImplementedError("Can't create an instance of VerifierAbstract")
+	
 	def verify(self, filepath, mimetype, extension, config):
-		mimeList = config.get("mimetype", extension)
-		arr = mimeList.split(",")
-		return mimetype in arr
+		raise NotImplementedError("Method verify isn't implemented")
 	
 	def getName(self):
-		return "Mimetester verifier"
+		raise NotImplementedError("Method getName isn't implemented")

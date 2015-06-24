@@ -15,19 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
-Created on Jul 12, 2012
+import sys
+import ConfigParser
+import logging
 
-@author: pawelb
-'''
-
-class VerifierAbstract():
-
-	def __init__(self):
-		raise NotImplementedError("Can't create an instance of VerifierAbstract")
+class Config():
+	config = None
 	
-	def verify(self, filepath, mimetype, extension, config):
-		raise NotImplementedError("Method verify isn't implemented")
-	
-	def getName(self):
-		raise NotImplementedError("Method getName isn't implemented")
+	def parseConfig(self):
+		self.config = ConfigParser.ConfigParser()
+		try:
+			self.config.readfp(open("/etc/hsn2/pcap-extract.conf"))
+		except IOError:
+			logging.warn("Cannot open '/etc/hsn2/pcap-extract.conf'. Exiting...")
+			sys.exit(2)
+
+	def getConfig(self):
+		self.parseConfig()
+		return self.config
+		

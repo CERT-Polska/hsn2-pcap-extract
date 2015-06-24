@@ -21,21 +21,21 @@ Created on Jul 12, 2012
 @author: pawelb
 '''
 
-import ConfigParser
-import logging
+import pefile
+from hsn2_pcap_extract.verifiers.VerifierAbstract import VerifierAbstract
 
-class Config():
-	config = None
-	
-	def parseConfig(self):
-		self.config = ConfigParser.ConfigParser()
-		try:
-			ret = self.config.readfp(open("/etc/hsn2/pcap-extract.conf"))
-		except IOError:
-			logging.warn("Cannot open '/etc/hsn2/pcap-extract.conf'. Exiting...")
-			sys.exit(2)
+class VerifierPefile(VerifierAbstract):
 
-	def getConfig(self):
-		self.parseConfig()
-		return self.config
+	def __init__(self):
+		pass
 		
+	def verify(self, filepath, mimetype, extension, config):
+		try:
+			pe = pefile.PE(filepath)
+			return True
+		except:
+			return False
+		pass   
+
+	def getName(self):
+		return "Pefile verifier"

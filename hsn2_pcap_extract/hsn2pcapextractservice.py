@@ -17,26 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
-Created on 10-07-2012
-
-@author: pawelb
-'''
-
 import sys
 sys.path.append("/opt/hsn2/python/commlib")
 from hsn2service import HSN2Service
 from hsn2pcapextracttaskprocessor import PcapExtractTaskProcessor
 from hsn2service import startService
-from os import access
-from os import path
-import logging
-
 
 class PcapExtractService(HSN2Service):
 	serviceName = "pcap-extract"
 	description = "HSN 2 PCAP extract Service"
-
 
 	def extraOptions(self,parser):
 		'''Arguments specific to this service. Receives a parser with the standard options. Returns a modified parser.'''

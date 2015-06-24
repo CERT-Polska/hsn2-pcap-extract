@@ -1,5 +1,3 @@
-#!/usr/bin/python -tt
-
 # Copyright (c) NASK
 # 
 # This file is part of HoneySpider Network 2.0.
@@ -18,15 +16,25 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 '''
-Created on 10-07-2012
+Created on Jul 12, 2012
 
 @author: pawelb
 '''
+import re
+from hsn2_pcap_extract.verifiers.VerifierAbstract import VerifierAbstract
+from hsn2_pcap_extract.external import External
 
-import subprocess
+class VerifierZip(VerifierAbstract):
 
-class External:
-	def runExternal(self, args):
-		proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-		output = proc.communicate()
-		return output
+	def __init__(self):
+		pass
+		
+	def verify(self, filepath, mimetype, extension, config):
+		external = External()
+		output = external.runExternal(["zip", "--test", filepath])
+		if re.match("(.*)OK(.*)", output[0], re.I) is not None:
+			return True
+		return False
+	
+	def getName(self):
+		return "Zip verifier"

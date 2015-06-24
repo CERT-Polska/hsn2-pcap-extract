@@ -1,4 +1,6 @@
-# Copyright (c) NASK
+#!/usr/bin/python
+
+# Copyright (c) NASK, NCSC
 # 
 # This file is part of HoneySpider Network 2.0.
 # 
@@ -15,29 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
-Created on Jul 12, 2012
 
-@author: pawelb
-'''
+from setuptools import setup
+from setuptools import find_packages
 
-import pefile
-import sys
-sys.path.append("/opt/hsn2/pcap-extract/verifiers")
-from VerifierAbstract import VerifierAbstract
-
-class VerifierPefile(VerifierAbstract):
-
-	def __init__(self):
-		pass
-		
-	def verify(self, filepath, mimetype, extension, config):
-		try:
-			pe = pefile.PE(filepath)
-			return True
-		except:
-			return False
-		pass   
-
-	def getName(self):
-		return "Pefile verifier"
+setup(
+    name='hsn2_pcap_extract',
+    version='2.0',
+    description='HSN2 PCAP extractor - It extracts files from PCAP',
+    author='CERT Polska',
+    author_email='info@cert.pl',
+    packages=find_packages(),
+    url='http://www.honeyspider.net/',
+    license='GPL-3',
+    install_requires=open('requirements.txt').read().splitlines(),
+)

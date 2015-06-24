@@ -25,19 +25,14 @@ Created on 10-07-2012
 
 import sys
 sys.path.append("/opt/hsn2/python/commlib")
-sys.path.append("/opt/hsn2/pcap-extract/verifiers")
 from hsn2taskprocessor import HSN2TaskProcessor
-from hsn2taskprocessor import ParamException, ProcessingException
-from VerifierFactory import VerifierFactory
-import ConfigParser
+from hsn2taskprocessor import ParamException
+from hsn2_pcap_extract.verifiers.VerifierFactory import VerifierFactory
 from config import Config
 from hsn2osadapter import ObjectStoreException
 from external import External
 import logging
 import os
-import shutil
-import time
-import tempfile
 import uuid
 import magic
 
@@ -74,9 +69,7 @@ class PcapExtractTaskProcessor(HSN2TaskProcessor):
 			raise ParamException("pcap_content param is missing.")
 		
 		outputDir = "/tmp/%s" % uuid.uuid4()
-		pcapPath = self.getPcapFilePath()
 		config = Config().getConfig()
-		configVar = config.get("verifier", "default")
 		
 		external.runExternal(["mkdir", "-p", outputDir]);
 		pcapFilePath = self.getPcapFilePath()
@@ -92,7 +85,7 @@ class PcapExtractTaskProcessor(HSN2TaskProcessor):
 			result = m.file(filepath)
 			mimetype = result.split(";")[0]
 			
-			fileName, fileExtension = os.path.splitext(filepath)
+			_, fileExtension = os.path.splitext(filepath)
 			fileExtension = fileExtension[1:]
 			
 			verifierList = verifierFactory.getVerifierList(fileExtension, config)
@@ -109,7 +102,7 @@ class PcapExtractTaskProcessor(HSN2TaskProcessor):
 		if len(objects) > 0:
 			newObjIds = self.osAdapter.objectsPut(jobId, taskId, objects)
 			self.newObjects.extend(newObjIds)   
-				 
+				
 		external.runExternal(["rm", "-rf", outputDir, pcapFilePath]);
 		return []
 
