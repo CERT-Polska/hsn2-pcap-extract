@@ -15,14 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
-Created on Jul 12, 2012
-
-@author: pawelb
-'''
 import re
 from hsn2_pcap_extract.verifiers.VerifierAbstract import VerifierAbstract
 from hsn2_pcap_extract.external import External
+
 
 class VerifierZip(VerifierAbstract):
 

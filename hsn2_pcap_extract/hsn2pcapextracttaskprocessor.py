@@ -17,26 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
-Created on 10-07-2012
-
-@author: pawelb
-'''
-
-import sys
-sys.path.append("/opt/hsn2/python/commlib")
-from hsn2taskprocessor import HSN2TaskProcessor
-from hsn2taskprocessor import ParamException
-from hsn2_pcap_extract.verifiers.VerifierFactory import VerifierFactory
-from config import Config
-from hsn2osadapter import ObjectStoreException
-
-from hsn2objectwrapper import Object
-
-from external import External
 import logging
 import os
 import uuid
+
+from hsn2_commons.hsn2objectwrapper import Object
+from hsn2_commons.hsn2osadapter import ObjectStoreException
+from hsn2_commons.hsn2taskprocessor import HSN2TaskProcessor
+from hsn2_commons.hsn2taskprocessor import ParamException
+from hsn2_pcap_extract.config import Config
+from hsn2_pcap_extract.external import External
+from hsn2_pcap_extract.verifiers.VerifierFactory import VerifierFactory
 import magic
 
 
@@ -44,7 +35,7 @@ class PcapExtractTaskProcessor(HSN2TaskProcessor):
 	parser = None
 		
 	def __init__(self, connector, datastore, serviceName, serviceQueue, objectStoreQueue, **extra):
-	   HSN2TaskProcessor.__init__(self, connector, datastore, serviceName, serviceQueue, objectStoreQueue, **extra)
+		HSN2TaskProcessor.__init__(self, connector, datastore, serviceName, serviceQueue, objectStoreQueue, **extra)
 
 	def getPcapFilePath(self):
 		return self.dsAdapter.saveTmp(self.currentTask.job, self.objects[0].pcap_content.getKey())
