@@ -1,9 +1,9 @@
 #!/usr/bin/python -tt
 
 # Copyright (c) NASK
-# 
+#
 # This file is part of HoneySpider Network 2.0.
-# 
+#
 # This is a free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -21,16 +21,17 @@ from hsn2_commons.hsn2service import HSN2Service
 from hsn2_pcap_extract.hsn2pcapextracttaskprocessor import PcapExtractTaskProcessor
 from hsn2_commons.hsn2service import startService
 
+
 class PcapExtractService(HSN2Service):
-	serviceName = "pcap-extract"
-	description = "HSN 2 PCAP extract Service"
+    serviceName = "pcap-extract"
+    description = "HSN 2 PCAP extract Service"
 
-	def extraOptions(self,parser):
-		'''Arguments specific to this service. Receives a parser with the standard options. Returns a modified parser.'''
-		return parser
+    def extraOptions(self, parser):
+        '''Arguments specific to this service. Receives a parser with the standard options. Returns a modified parser.'''
+        return parser
 
-	def sanityChecks(self, cliargs):
-		return HSN2Service.sanityChecks(self, cliargs)
+    def sanityChecks(self, cliargs):
+        return HSN2Service.sanityChecks(self, cliargs)
 
 if __name__ == '__main__':
-	startService(PcapExtractService, PcapExtractTaskProcessor)
+    startService(PcapExtractService, PcapExtractTaskProcessor)

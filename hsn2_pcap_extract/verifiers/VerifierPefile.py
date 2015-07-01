@@ -1,7 +1,7 @@
 # Copyright (c) NASK
-# 
+#
 # This file is part of HoneySpider Network 2.0.
-# 
+#
 # This is a free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -21,16 +21,13 @@ from hsn2_pcap_extract.verifiers.VerifierAbstract import VerifierAbstract
 
 class VerifierPefile(VerifierAbstract):
 
-	def __init__(self):
-		pass
-		
-	def verify(self, filepath, mimetype, extension, config):
-		try:
-			pe = pefile.PE(filepath)
-			return True
-		except:
-			return False
-		pass   
+    def verify(self, filepath, mimetype, extension, config):
+        try:
+            pe = pefile.PE(filepath)
+            return True
+        except:
+            return False
+        pass
 
-	def getName(self):
-		return "Pefile verifier"
+    def getName(self):
+        return "Pefile verifier"

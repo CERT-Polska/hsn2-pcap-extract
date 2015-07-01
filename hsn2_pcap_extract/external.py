@@ -1,9 +1,9 @@
 #!/usr/bin/python -tt
 
 # Copyright (c) NASK
-# 
+#
 # This file is part of HoneySpider Network 2.0.
-# 
+#
 # This is a free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -19,8 +19,10 @@
 
 import subprocess
 
+
 class External:
-	def runExternal(self, args):
-		proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-		output = proc.communicate()
-		return output
+
+    def runExternal(self, args):
+        proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        output = proc.communicate()
+        return output
