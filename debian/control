@@ -8,6 +8,6 @@ X-Python-Version: >= 2.6
 
 Package: python-hsn2-pcap-extract
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-hsn2-commons, tcpxtract, python-pefile, zip, python-magic
+Depends: ${misc:Depends}, ${python:Depends}, python-hsn2-commons, tcpxtract, python-pefile, zip, python-magic, hsn2-commons-debian
 Provides: ${python:Provides}
 Description: HSN2 PCAP extractor - It extracts files from PCAP
