@@ -1,7 +1,7 @@
 # Copyright (c) NASK
-# 
-# This file is part of HoneySpider Network 2.0.
-# 
+#
+# This file is part of HoneySpider Network 2.1.
+#
 # This is a free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -15,26 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
-Created on Jul 12, 2012
+import pefile
+from hsn2_pcap_extract.verifiers.VerifierAbstract import VerifierAbstract
 
-@author: pawelb
-'''
 
-import sys
-sys.path.append("/opt/hsn2/pcap-extract/verifiers")
-from VerifierAbstract import VerifierAbstract
-import logging
+class VerifierPefile(VerifierAbstract):
 
-class VerifierMimetester(VerifierAbstract):
+    def verify(self, filepath, mimetype, extension, config):
+        try:
+            pe = pefile.PE(filepath)
+            return True
+        except:
+            return False
+        pass
 
-	def __init__(self):
-		pass
-		
-	def verify(self, filepath, mimetype, extension, config):
-		mimeList = config.get("mimetype", extension)
-		arr = mimeList.split(",")
-		return mimetype in arr
-	
-	def getName(self):
-		return "Mimetester verifier"
+    def getName(self):
+        return "Pefile verifier"
